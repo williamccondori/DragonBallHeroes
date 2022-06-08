@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="DragonBallHeroes.Views.HeroView"
+             xmlns:pancardview="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:pancardviewProcessor="clr-namespace:PanCardView.Processors;assembly=PanCardView"
+             xmlns:sharpnado="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+             >
+    <Grid RowDefinitions="400,*"
+          BackgroundColor="Orange">
+        <Grid Grid.Row="0">
+            <pancardview:CoverFlowView
+                ItemsSource="{Binding Heroes}"
+                PositionShiftValue="90"
+                IsCyclical="False"
+                Margin="0,50,0,0">
+                <x:Arguments>
+                    <pancardviewProcessor:CoverFlowProcessor ScaleFactor="0.75" />
+                </x:Arguments>
+                <pancardview:CoverFlowView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="60,0">
+                            <Frame Padding="0" CornerRadius="18">
+                                <Image Source="{Binding Icon}" Aspect="AspectFill"/>
+                            </Frame>
+                            <Grid HeightRequest="60"
+                                  VerticalOptions="End"
+                                  HorizontalOptions="Start"
+                                  Margin="10">
+                                <sharpnado:MaterialFrame
+                                    MaterialBlurStyle="Light"
+                                    MaterialTheme="AcrylicBlur"
+                                    CornerRadius="18"/>
+                                <StackLayout Orientation="Horizontal"
+                                             Margin="15,0">
+                                    <Label Text="Colores"
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           FontAttributes="Bold" />
+                                    <BoxView BackgroundColor="Black" 
+                                             HeightRequest="30"
+                                             WidthRequest="30"
+                                             CornerRadius="15"
+                                             VerticalOptions="Center"/>
+                                    <BoxView BackgroundColor="Red" 
+                                             HeightRequest="30"
+                                             WidthRequest="30"
+                                             CornerRadius="15"
+                                             VerticalOptions="Center"/>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </pancardview:CoverFlowView.ItemTemplate>
+            </pancardview:CoverFlowView>
+        </Grid>
+        <Grid
+            Margin="20"
+            Grid.Row="1">
+            <sharpnado:MaterialFrame CornerRadius="18"
+                                     MaterialBlurStyle="Light"
+                                     MaterialTheme="AcrylicBlur"/>
+            <Grid Margin="20">
+                <sharpnado:MaterialFrame CornerRadius="18"
+                                         MaterialBlurStyle="ExtraLight"
+                                         MaterialTheme="AcrylicBlur" />
+                <StackLayout VerticalOptions="CenterAndExpand">
+                    <Label Text="Colores Predominantes" 
+                           FontSize="18"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           Margin="0,0,0,10"
+                          />
+                    <Button Text="Principal"
+                            TextTransform="None"
+                            CornerRadius="20"
+                            HorizontalOptions="Start"
+                            Padding="20,10"
+                            BackgroundColor="White"
+                            Margin="20,0"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Color HTML:"
+                               FontSize="15" 
+                               FontAttributes="Bold" 
+                               VerticalOptions="Center"
+                               Margin="20,0,0,0"/>
+                        <Label Text="#fafafa"
+                               FontSize="15" 
+                               FontAttributes="Bold" 
+                               VerticalOptions="Center"/>
+                        <BoxView BackgroundColor="Red"
+                                 HeightRequest="30"
+                                 WidthRequest="30"
+                                 CornerRadius="15"
+                                 VerticalOptions="Center"/>
+                    </StackLayout>
+                    <Button Text="Secundario"
+                            TextTransform="None"
+                            CornerRadius="20"
+                            HorizontalOptions="Start"
+                            Padding="20,10"
+                            BackgroundColor="White"
+                            Margin="20,0"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Color HTML:"
+                               FontSize="15" 
+                               FontAttributes="Bold" 
+                               VerticalOptions="Center"
+                               Margin="20,0,0,0"/>
+                        <Label Text="#fafafa"
+                               FontSize="15" 
+                               FontAttributes="Bold" 
+                               VerticalOptions="Center"/>
+                        <BoxView BackgroundColor="Green"
+                                 HeightRequest="30"
+                                 WidthRequest="30"
+                                 CornerRadius="15"
+                                 VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>
