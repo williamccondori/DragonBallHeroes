@@ -5,15 +5,34 @@
              xmlns:pancardview="clr-namespace:PanCardView;assembly=PanCardView"
              xmlns:pancardviewProcessor="clr-namespace:PanCardView.Processors;assembly=PanCardView"
              xmlns:sharpnado="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              >
     <Grid RowDefinitions="400,*"
-          BackgroundColor="Orange">
+          BackgroundColor="{Binding White}">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="1,0">
+                <GradientStop Color="White" Offset="0.6" />
+                <GradientStop Color="{Binding Source={x:Reference ColorOne}, Path=Color}" Offset="0.8" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid Grid.Row="0">
+            <pancakeView:PancakeView BackgroundGradientStartPoint="0,1"
+                                     BackgroundGradientEndPoint="1,0">
+                <pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStopCollection>
+                        <pancakeView:GradientStop Color="White" Offset="0"/>
+                        <pancakeView:GradientStop Color="White" Offset="0.6"/>
+                        <pancakeView:GradientStop Color="{Binding SelectedColorOne}" Offset="0.8" x:Name="ColorOne"/>
+                        <pancakeView:GradientStop Color="{Binding SelectedColorTwo}" Offset="1" x:Name="ColorTwo"/>
+                    </pancakeView:GradientStopCollection>
+                </pancakeView:PancakeView.BackgroundGradientStops>
+            </pancakeView:PancakeView>
             <pancardview:CoverFlowView
                 ItemsSource="{Binding Heroes}"
                 PositionShiftValue="90"
                 IsCyclical="False"
-                Margin="0,50,0,0">
+                Margin="0,50,0,0"
+                PropertyChanged="CoverFlowView_PropertyChanged">
                 <x:Arguments>
                     <pancardviewProcessor:CoverFlowProcessor ScaleFactor="0.75" />
                 </x:Arguments>
@@ -37,12 +56,12 @@
                                            TextColor="White"
                                            VerticalOptions="Center"
                                            FontAttributes="Bold" />
-                                    <BoxView BackgroundColor="Black" 
+                                    <BoxView BackgroundColor="{Binding Source={x:Reference ColorOne}, Path=Color}" 
                                              HeightRequest="30"
                                              WidthRequest="30"
                                              CornerRadius="15"
                                              VerticalOptions="Center"/>
-                                    <BoxView BackgroundColor="Red" 
+                                    <BoxView BackgroundColor="{Binding Source={x:Reference ColorTwo}, Path=Color}" 
                                              HeightRequest="30"
                                              WidthRequest="30"
                                              CornerRadius="15"
@@ -84,11 +103,13 @@
                                FontAttributes="Bold" 
                                VerticalOptions="Center"
                                Margin="20,0,0,0"/>
-                        <Label Text="#fafafa"
+                        <Label Text="{Binding SelectedColorOne}"
                                FontSize="15" 
                                FontAttributes="Bold" 
-                               VerticalOptions="Center"/>
-                        <BoxView BackgroundColor="Red"
+                               VerticalOptions="Center"
+                               TextTransform="Uppercase"
+                               TextColor="{Binding Source={x:Reference ColorOne}, Path=Color}"/>
+                        <BoxView BackgroundColor="{Binding Source={x:Reference ColorOne}, Path=Color}"
                                  HeightRequest="30"
                                  WidthRequest="30"
                                  CornerRadius="15"
@@ -107,11 +128,12 @@
                                FontAttributes="Bold" 
                                VerticalOptions="Center"
                                Margin="20,0,0,0"/>
-                        <Label Text="#fafafa"
+                        <Label Text="{Binding SelectedColorTwo}"
                                FontSize="15" 
                                FontAttributes="Bold" 
-                               VerticalOptions="Center"/>
-                        <BoxView BackgroundColor="Green"
+                               VerticalOptions="Center"
+                               TextColor="{Binding Source={x:Reference ColorTwo}, Path=Color}"/>
+                        <BoxView BackgroundColor="{Binding Source={x:Reference ColorTwo}, Path=Color}"
                                  HeightRequest="30"
                                  WidthRequest="30"
                                  CornerRadius="15"
