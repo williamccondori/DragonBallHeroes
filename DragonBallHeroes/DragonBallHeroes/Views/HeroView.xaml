@@ -89,6 +89,7 @@
                            HorizontalOptions="Center"
                            FontAttributes="Bold"
                            Margin="0,0,0,10"
+                           TextColor="Black"
                           />
                     <Button Text="Principal"
                             TextTransform="None"
@@ -96,12 +97,14 @@
                             HorizontalOptions="Start"
                             Padding="20,10"
                             BackgroundColor="White"
+                            TextColor="{Binding Source={x:Reference ColorOne}, Path=Color}"
                             Margin="20,0"/>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Color HTML:"
                                FontSize="15" 
                                FontAttributes="Bold" 
                                VerticalOptions="Center"
+                               TextColor="Black"
                                Margin="20,0,0,0"/>
                         <Label Text="{Binding SelectedColorOne}"
                                FontSize="15" 
@@ -121,12 +124,14 @@
                             HorizontalOptions="Start"
                             Padding="20,10"
                             BackgroundColor="White"
+                            TextColor="{Binding Source={x:Reference ColorTwo}, Path=Color}"
                             Margin="20,0"/>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Color HTML:"
                                FontSize="15" 
                                FontAttributes="Bold" 
                                VerticalOptions="Center"
+                               TextColor="Black"
                                Margin="20,0,0,0"/>
                         <Label Text="{Binding SelectedColorTwo}"
                                FontSize="15" 
