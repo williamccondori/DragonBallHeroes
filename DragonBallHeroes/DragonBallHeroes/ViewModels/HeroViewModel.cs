@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DragonBallHeroes.ViewModels
-{
-    public class HeroViewModel : BaseViewModel
+{ 
+   public class HeroViewModel : BaseViewModel
     {
         private List<Hero> _heroes;
 
@@ -14,6 +14,7 @@ namespace DragonBallHeroes.ViewModels
         public HeroViewModel(INavigation navigation)
         {
             Navigation = navigation;
+            DependencyService.Get<IStatusBarViewModel>().SetStatusBarTransparent();
             Task.Run(Show);
         }
         #endregion
@@ -25,9 +26,7 @@ namespace DragonBallHeroes.ViewModels
             set { SetValue(ref _heroes, value); }
         }
         #endregion
-
-
-
+         
         public async Task Show()
         {
             var heroService = new HeroService();
